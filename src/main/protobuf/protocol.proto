@@ -1,0 +1,35 @@
+syntax="proto3";
+
+package au.id.haworth.rebuild.agent;
+option go_package = "github.com/RebuildTools/rebuild-agent-protocol/golang";
+
+// System is a top level message
+// that defines an over-all system
+// and its sepcifications
+message System {
+			string			system_serial			= 1; // The system's serial number as defined in the DMI/SMBIOS
+			int64			system_memory_total		= 2; // The total memory available on the machine
+	repeated	CpuSocket		system_sockets			= 3; // An array of CPU socket definitions
+	repeated	NetworkInterface	system_network_interfaces	= 4; // An array of Network Interface definitions
+}
+
+// CpuSocket defines information
+// about a single CPU in a socket
+message CpuSocket {
+			int32			socket_number			= 1; // Defines the socket the CPU is in
+			int32			total_cores			= 2; // Defines the number cores the CPU has (The physical number will be doubled if Hyper-Threading is enabled)
+			int32			vendor_id			= 3; // Defines the ID of the CPU Vendor
+			int32			family_id			= 4; // Defines the ID of the CPU Family
+			int32			model_id			= 5; // Defines the ID of the CPU Model
+			string			model_name			= 6; // Defines a string representation of the CPU Model
+			double			mhz				= 7; // Defines the Mhz rating of the CPU
+			int32			cahce_size			= 8; // Defines the size of the CPU cache
+	repeated	string			flags				= 9; // Defines the flags enabled on the CPU
+}
+
+// NetworkInterface defines information
+// about a single network interface
+message NetworkInterface {
+			string			name				= 1; // Defines the name of the interace as detected by the Linux Kernel (e.g. eth0)
+			string			hardware_addr			= 2; // Defines the hardware/MAC address of the interace, used to identify the manufacture
+}
