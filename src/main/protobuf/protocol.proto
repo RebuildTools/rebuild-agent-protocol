@@ -8,9 +8,12 @@ option go_package = "github.com/RebuildTools/rebuild-agent-protocol/golang";
 // and its sepcifications
 message System {
 			string			system_serial			= 1; // The system's serial number as defined in the DMI/SMBIOS
-			int64			system_memory_total		= 2; // The total memory available on the machine
-	repeated	CpuSocket		system_sockets			= 3; // An array of CPU socket definitions
-	repeated	NetworkInterface	system_network_interfaces	= 4; // An array of Network Interface definitions
+                        string                  system_uuid                     = 2; // The system's UUID as defined in the DMI/SMBIOS
+                        string                  system_product_name             = 3; // The system's "Product Name" as defined in the DMI/SMBIOS
+                        string                  system_vendor                   = 4; // The system's vendor as defined in the DMI/SMBIOS
+			int64			system_memory_total		= 5; // The total memory available on the machine
+	repeated	CpuSocket		system_sockets			= 6; // An array of CPU socket definitions
+	repeated	NetworkInterface	system_network_interfaces	= 7; // An array of Network Interface definitions
 }
 
 // CpuSocket defines information
@@ -18,7 +21,7 @@ message System {
 message CpuSocket {
 			int32			socket_number			= 1; // Defines the socket the CPU is in
 			int32			total_cores			= 2; // Defines the number cores the CPU has (The physical number will be doubled if Hyper-Threading is enabled)
-			int32			vendor_id			= 3; // Defines the ID of the CPU Vendor
+			string			vendor_id			= 3; // Defines the ID String of the CPU Vendor
 			int32			family_id			= 4; // Defines the ID of the CPU Family
 			int32			model_id			= 5; // Defines the ID of the CPU Model
 			string			model_name			= 6; // Defines a string representation of the CPU Model
