@@ -46,9 +46,5 @@ PB.runProtoc in PB.protobufConfig := { args =>
   println("Moving compiled golang protobuf messages from \"target/\" to \"./golang\"")
   Seq("cp", "-r", "target/github.com/RebuildTools/rebuild-agent-protocol/golang", "./").!!
 
-  println("Committing Golang library code")
-  Seq("git", "add", "./golang").!!
-  Seq("git", "commit", "-m", "\"[SBT] Committing compiled protocol buffer messages for Golang\"").!
-
   0
 }

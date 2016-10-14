@@ -1,10 +1,20 @@
 language: scala
+
 scala:
-  - 2.10.4
-  - 2.11.8
+    - 2.10.4
+    - 2.11.8
 
 before_install:
-  - git fetch --tags
-  - openssl aes-256-cbc -K $encrypted_f80571800bec_key -iv $encrypted_f80571800bec_iv -in .credentials.enc -out .credentials -d
-  - mkdir -p $HOME/.bintray
-  - cp .credentials $HOME/.bintray/.credentials
+    - apt-get install golang 
+    - curl https://glide.sh/get | sh
+    - git fetch --tags
+    - openssl aes-256-cbc -K $encrypted_f80571800bec_key -iv $encrypted_f80571800bec_iv -in .credentials.enc -out .credentials -d
+    - mkdir -p $HOME/.bintray
+    - cp .credentials $HOME/.bintray/.credentials
+
+after_success:
+    - .travis/push.sh
+    - sbt ++$TRAVIS_SCALA_VERSION publish
+env:
+  global:
+    secure: t0SwijbPGdry69OslYQwglDurD82fjdZVYrjHbf5s3MyJfg742Ca1rwYtxchd5DOZELNBHV8eOuSFfkfdlHmKNzMEZlSA4d4PFeEWzf1ave+c9wEGG70Gz9KbrboVeozfzpkvX45TwrEXbzx8HABoaM/fcQCQqTJyyzVnlFLjsLvVb0zSG/Ru3wxVpJzHyxXWj5WoYQQvQCGqTs6xE1uS1OM//Wxzat/aOaJvGO4bq6jo9Fvvs9ny3eM3OCpkzH/wMZ/D9WO1PozCT00jA0lv4XrJGyG/x4JjtFIrOnRxbCFK4z0ita3fmxxZErfnfZwDJz497GTB0hfgsFgKl8vTeo51wCeA8uA5ihT/CLTbFsb6iGArByEPfwuzv9zQ1ArXBmGj9+vm8782bSMiG5F6GZzDQzfSYvBaPjfbNUqeEuDj9jJt2Xf30kQKlsUPqCLu2zfkuyBxNMRiRjCJnixyRY84uZCVobOab0+OFMw2xZ8NDb8LRYDEP/jtcr+0RYP/3GizD6ia16DJ623Kp6A4Y7a+69Kq+NUZpZ+OQCPcGnmdb7HdhAxcfdggDMNb4smiBQapsLvF8YprTLDlp5jmvIO/LvcA0lPrUCcAN4QMokSECUrvp9zu4MLRRl1XTC2KIDlbhQHquuv6+6RhFFepYqTqx/I8jmMjheontFL7og=
