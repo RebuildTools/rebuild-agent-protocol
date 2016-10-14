@@ -5,7 +5,7 @@ name := "protocol"
 
 organization := "au.id.haworth.rebuild.agent"
 
-scalaVersion := Seq("2.10.4", "2.11.8")
+crossScalaVersions := Seq("2.10.4", "2.11.8")
 
 licenses += ("Apache-2.0", url("https://opensource.org/licenses/Apache-2.0"))
 
@@ -16,6 +16,8 @@ git.useGitDescribe := true
 PB.protobufSettings
 
 bintrayOrganization := Some("rebuild")
+
+bintrayRepository := "Maven"
 
 lazy val protocol = (project in file(".")).
   enablePlugins(BuildInfoPlugin).
