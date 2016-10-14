@@ -14,6 +14,7 @@ message System {
 			int64			system_memory_total		= 5; // The total memory available on the machine
 	repeated	CpuSocket		system_sockets			= 6; // An array of CPU socket definitions
 	repeated	NetworkInterface	system_network_interfaces	= 7; // An array of Network Interface definitions
+        repeated        BlockDevice             system_storage                  = 8; // An array of block device definitions
 }
 
 // CpuSocket defines information
@@ -35,4 +36,16 @@ message CpuSocket {
 message NetworkInterface {
 			string			name				= 1; // Defines the name of the interace as detected by the Linux Kernel (e.g. eth0)
 			string			hardware_addr			= 2; // Defines the hardware/MAC address of the interace, used to identify the manufacture
+}
+
+// BlockDevice represents hard drvies,
+// CD/DVD roms, etc found on a system
+message BlockDevice {
+                        string                  name                            = 1; // Defines the Linux name for the block device
+                        int64                   size                            = 2; // Defines the size of the block device in bytes
+                        string                  type                            = 3; // Defines the type of block device
+                        string                  model                           = 4; // Defines the model of the block device
+                        string                  serial                          = 5; // Defines the vendor assigned serial of the block device
+                        string                  vendor                          = 6; // Defines the vendor of the block device
+                        string                  revision                        = 7; // Defines the vendor assigned revision of the block device
 }
