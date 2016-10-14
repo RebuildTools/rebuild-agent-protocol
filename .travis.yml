@@ -16,9 +16,8 @@ before_install:
     - go env
     - go get -u github.com/golang/protobuf/{proto,protoc-gen-go} 
     - git fetch --tags
-    - openssl aes-256-cbc -K $encrypted_f80571800bec_key -iv $encrypted_f80571800bec_iv -in .credentials.enc -out .credentials -d
     - mkdir -p $HOME/.bintray
-    - cp .credentials $HOME/.bintray/.credentials
+    - openssl aes-256-cbc -K $encrypted_9d93f39c12b8_key -iv $encrypted_9d93f39c12b8_iv -in .credentials.enc -out ~\/.bintray/.credentials -d
 
 after_success:
     - .travis/push.sh
