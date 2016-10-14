@@ -15,6 +15,8 @@ git.useGitDescribe := true
 
 PB.protobufSettings
 
+bintrayOrganization := Some("rebuild")
+
 lazy val protocol = (project in file(".")).
   enablePlugins(BuildInfoPlugin).
   settings(
