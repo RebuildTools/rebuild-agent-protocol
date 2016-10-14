@@ -11,6 +11,8 @@ before_install:
     - export GOPATH=$(pwd)/TMP_GOPATH
     - export PATH=${PATH}:${GOPATH}/bin
     - sudo apt-get install golang protobuf-compiler
+    - echo "Path is: $PATH"
+    - go env
     - go get -u github.com/golang/protobuf/{proto,protoc-gen-go} 
     - curl https://glide.sh/get | sudo sh
     - git fetch --tags
