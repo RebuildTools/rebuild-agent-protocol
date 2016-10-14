@@ -5,7 +5,9 @@ name := "protocol"
 
 organization := "au.id.haworth.rebuild.agent"
 
-scalaVersion := "2.11.8"
+scalaVersion := Seq("2.10.4", "2.11.8")
+
+licenses += ("Apache-2.0", url("https://opensource.org/licenses/Apache-2.0"))
 
 enablePlugins(GitVersioning)
 
